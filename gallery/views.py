@@ -9,6 +9,7 @@ def gallery(request):
     
     if category is None:
         photos = Photo.objects.all()
+        print("Hello")
     else:
         photos = Photo.objects.filter(category__name__iexact=category)
     categories = Category.objects.all()
