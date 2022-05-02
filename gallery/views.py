@@ -25,6 +25,8 @@ def viewPhoto(request, pk):
     return render(request, 'gallery/photo.html', {
         'photo': photo,
     })
+def xanderCage(request):
+    pass
 
 
 def addPhoto(request):
