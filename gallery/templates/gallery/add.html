@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row justify-content-center">
+    <div class="col-md-4">
+        <a href="{% url 'gallery' %}" class="btn btn-dark my-3">View Gallery</a>
+        <div class="card">
+            <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+                <div class="m-3">
+                    <label>Description</label>
+                    <textarea required placeholder="Enter a description..." class="form-control" rows="3" name="description"></textarea>
+                </div>
+            {% comment %}
+                <div class="m-3">
+                    <label>Choose a Category</label>
+                    <input class="form-control" list="dataListOptions" placeholder="Type to search...">
+                    <datalist id="dataListOptions">
+                        {% for category in categories %}
+                            <option value="{{ category.name }}">
+                        {% endfor %}
+
+                    </datalist>
+                </div>
+                {% endcomment %}
+                <div class="m-3">
+                    <label>Select a category</label>
+                    <select name="category" class="form-control">
+                        <option value="none">Select a category...</option>
+                        {% for category in categories %}
+                            <option  value="{{ category.id }}">{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="m-3">
+                    <label>Create a new category</label>
+                    <input type="text" placeholder="Create a new category..." class="form-control" name="category_new">
+                </div>
+
+                <div class="m-3">
+                    <label>Upload a photo</label>
+                    <input required name="image" class="form-control " type="file">
+                </div>
+                <input type="submit" class="btn btn-primary m-3" value="Submit">
+            </form>
+        </div>
+    </div>
+    </div>
+{% endblock %}
